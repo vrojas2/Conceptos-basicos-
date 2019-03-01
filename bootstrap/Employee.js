@@ -13,6 +13,11 @@ export default class Employee {
         return this._email;
     }
 
+    getBirthDayAsString() {
+        let d = this._birthday.getDate() + "/" + this._birthday.getMonth() + "/" + this._birthday.getYear();
+        return d;
+    }
+
     get birthday() {
         return this._birthday;
     }

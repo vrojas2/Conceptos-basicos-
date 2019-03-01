@@ -12,7 +12,7 @@ export default class Agenda {
 
         cellName.innerHTML = employee.name;
         cellEmail.innerHTML = employee.email;
-        cellBirthday.innerHTML = employee.birthday;
+        cellBirthday.innerHTML = employee.getBirthDayAsString();
         cellAge.innerHTML = employee.getAge();
     }
 }
