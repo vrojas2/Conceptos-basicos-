@@ -14,7 +14,7 @@ export default class Employee {
     }
 
     getBirthDayAsString() {
-        let d = this._birthday.getDate() + "/" + this._birthday.getMonth() + "/" + this._birthday.getYear();
+        let d = this._birthday.getDate() + "/" + this._birthday.getMonth() + "/" + this._birthday.getFullYear();
         return d;
     }
 
