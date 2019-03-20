@@ -1,19 +1,28 @@
+import Employee from "./Employee.js";
+
 export default class Agenda {
   constructor(tableAgenda, tableInfo) {
     this._tableAgenda = tableAgenda;
     this._tableInfo = tableInfo;
     this._numEmployees = 0;
     this._sumAge = 0;
-
-    if (localStorage.getItem("employees")) {
-      this._employees = JSON.parse(localStorage.getItem("employees"));
-    } else {
-      this._employees = [];
-    }
-    console.log(this._employees);
+    this._employees = [];
+    
+    this._initTables();
   }
 
-  addEmployee(employee) {
+  _initTables() {
+    let employees = JSON.parse(localStorage.getItem("employees"));
+    if(employees === null){
+      return;
+    }
+    employees.forEach((employee, index) => {
+      employee.birthday = new Date(employee.birthday);
+      this._showInTable(new Employee(employee));
+    });
+  }
+
+  _showInTable(employee) {
     let row = this._tableAgenda.insertRow(-1);
 
     let cellName = row.insertCell(0);
@@ -38,9 +47,11 @@ export default class Agenda {
         name: employee.name,
         email: employee.email,
         birthday: employee.birthday
-      };
-
+      }
       this._employees.push(objEmployee);
+  }
+  addEmployee(employee) {
+    this._showInTable(employee);
       localStorage.setItem("employees", JSON.stringify(this._employees));
       console.log(localStorage.getItem("employees"));
   }
